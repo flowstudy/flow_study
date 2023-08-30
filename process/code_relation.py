@@ -7,7 +7,6 @@
 # Description:
 ######################################################################
 import re
-import json
 import sql_appbk
 
 

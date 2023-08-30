@@ -1,8 +1,6 @@
 import json
 import platform
-
 from elasticsearch import Elasticsearch
-
 import sql_appbk
 # 数据库
 # 带选择数据库功能
@@ -175,5 +173,3 @@ if __name__ == '__main__':
     # contract_address = "0x011b6f1425389550"
     # sc = get_similar_code(contract_address,contract_name)
     # print(sc)
-
-

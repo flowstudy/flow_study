@@ -9,9 +9,8 @@ from PIL import Image
 import matplotlib.pyplot as plt
 #ref:https://www.heywhale.com/mw/project/5f5dc9afae300e0046fdd488
 
-
-#pip3 install jeiba sklearn wordcloud
-
+#pip3 install jieba sklearn wordcloud
+#pip3 install scikit-learn
 def CreatCorpus(path):
     files = os.listdir(path)
     # 读取文档

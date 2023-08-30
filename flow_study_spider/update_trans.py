@@ -1,7 +1,6 @@
 import asyncio
-import get_trans
 import time
-import sys
+import get_trans
 import sql_appbk
 
 """
@@ -28,7 +27,6 @@ def update_trans_data():
     #step2 获得区块内的交易信息，主要是合约代码和名称，插入flow_trans_data,
     # 调用函数为 get_trans.get_trans(height)
     ret = asyncio.run(get_trans.get_trans(height))
-
     # step3 更新该区块的状态 is_update =1
     sql_update_state = """
     UPDATE flow_block SET is_updated =1 WHERE height = {}
