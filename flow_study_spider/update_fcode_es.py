@@ -3,7 +3,6 @@ import time
 from elasticsearch import Elasticsearch
 import sql_appbk
 
-
 # 向es插入一条数据,data格式为dict
 # 使用时修改es地址，索引名
 def insert_es(data):
@@ -13,7 +12,7 @@ def insert_es(data):
     # print(res['result'])
     return res
 
-# 读取MySQL数据，插入es
+# 读取MySQL数据，插入es。
 # 使用时修改mysql表
 def process():
     print("上传es")
@@ -21,7 +20,7 @@ def process():
     sql_com = 'select * from flow_code where is_process = 0 ;'
     result = sql_appbk.mysql_com(sql_com)
     if 0 == len(result):
-        time.sleep(60 * 60)  # 1小时
+        time.sleep(60*60)  # 1小时
         return 0
     for row in result:
         print(row)
@@ -34,7 +33,7 @@ def process():
         # print(ret)
     return ret
 
-
 if __name__ == '__main__':
     while 1:
         process()
+        time.sleep(60*60)

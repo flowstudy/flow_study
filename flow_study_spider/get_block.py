@@ -3,14 +3,14 @@ import time
 from flow_py_sdk import flow_client
 from twisted.internet import task, reactor
 import sql_appbk
-
 # client = flow_client(host="access.mainnet.nodes.onflow.org", port=9000)
 
 '''
 功能：获得最新区块的高度,插入flow_block
 输入：无
-返回：height 高度
+返回：height 高度 
 '''
+
 async def get_block_height():
     async with flow_client(
             host="access.mainnet.nodes.onflow.org", port=9000
@@ -30,27 +30,34 @@ async def get_block_height():
         }
         # block_list.append(data)
         # sql_appbk.insert_update_data(data,"flow_block")
-        sql_appbk.insert_data(data, "flow_block")
+        ret = sql_appbk.insert_data(data, "flow_block")
         return height
 
 
-"""
-功能：每0.5秒执行一次，获得区块高度的函数
-输入：无
-返回：
-"""
-def process():
-    # while True:
-    #     height = asyncio.run(get_block_height())
-    # print(height)
-    # time.sleep(0.5)
-    l = task.LoopingCall(process_sub)
-    l.start(0.5)  # call every STEP_S seconds
-    reactor.run()
 
 def process_sub():
     height = asyncio.run(get_block_height())
     return height
+"""
+功能：每0.5秒执行一次，获得区块高度的函数
+输入：无。
+返回：
+"""
+def  process():
+    # while True:
+    #     height = asyncio.run(get_block_height())
+        # print(height)
+        # time.sleep(0.5)
+    l = task.LoopingCall(process_sub)
+    l.start(0.5)  # call every STEP_S seconds
+    reactor.run()
+
 
 if __name__ == '__main__':
+    # while 1:
+    #     process()
+    #     time.sleep(60*60)
     process()
+
+
+
